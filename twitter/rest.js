@@ -23,12 +23,12 @@ exports.getJSON = function(options, onResult)
 
         res.on('end', function() {
             var obj = JSON.parse(output);
-            onResult(res.statusCode, obj);
+            onResult(null, obj);
         });
     });
 
     req.on('error', function(err) {
-        //res.send('error: ' + err.message);
+        onResult(err, null);
     });
 
     req.end();

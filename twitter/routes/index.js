@@ -21,27 +21,23 @@ router.get("/test", function(req, res) {
 router.post('/register', function(req, res) {
   console.log(req.body);
 
-  if(!req.body.url){
-    res.send("no param 'url' provided");
+  if(!req.body.api){
+    res.send("no param 'api' provided");
     return;
   }
 
   //I am so sorry
   try{
-    rest.getJSON(req.body.url, function(err, result){
+    rest.getJSON(req.body.api, function(err, result){
       console.log(result);
       if(err){
         res.send(err);
         return
       }
 
-      if(!result.username){
-        res.send("no username field provided in request body");
-      }
-
       //PETER, THIS IS WHERE I LEFT OFF
       // I was just making sure there weren't duplicate api urls in the database
-      models.User.findOne({api:req.body.url}, function(err, users){
+      models.User.findOne({api:req.body.api}, function(err, users){
 
       });
 

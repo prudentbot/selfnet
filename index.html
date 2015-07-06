@@ -1,0 +1,34 @@
+
+<!doctype html>
+<html ng-app="twitterClone">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
+    <script src="public/components/lodash/lodash.js"></script>
+    <script src="twitter.js"></script>
+  </head>
+  <body>
+    <h2>Tweets</h2>
+    <div ng-controller="twitterController as twitter">
+
+      <form ng-submit="twitter.addURL()">
+        <input type="text" ng-model="twitter.URLtext"  size="30"
+               placeholder="add person's base URL here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+
+      {{errorMessage}}
+
+      <h4> Following: </h4>
+      <div ng-repeat="url in twitter.URLs">
+        {{url}}
+      </div>
+
+      <h4> Tweets: </h4>
+      <div ng-repeat="tweet in tweets">
+        <p> {{tweet.text}} </p>
+        <p> {{tweet.timestamp}} </p>
+      </div>
+    </div>
+
+  </body>
+</html>
